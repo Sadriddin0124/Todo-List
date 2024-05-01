@@ -9,25 +9,31 @@ const TodoCard = ({
   item,
   completedTasks,
   markAsRead,
-  deleteTask,
   setTodoModal,
   setDefaultValue,
   index, 
-  setIndex
+  setIndex,
+  markAsUnRead,
+  openDelete
 }: {
   item: ToDoTypes;
   completedTasks: number[];
   markAsRead: (id: number) => void;
-  deleteTask: (id: number) => void;
   setTodoModal: Dispatch<SetStateAction<boolean>>;
   setDefaultValue: Dispatch<SetStateAction<ToDoTypes>>;
   index: number;
-  setIndex: Dispatch<SetStateAction<number>>
+  setIndex: Dispatch<SetStateAction<number>>;
+  markAsUnRead: (id: number) => void;
+  openDelete: Dispatch<SetStateAction<boolean>>
 }) => {
   const editTask = () => {
     setTodoModal(true)
     setDefaultValue(item)
     setIndex(index)
+  }
+  const DeleteTask = () => {
+    openDelete(true)
+    setDefaultValue(item)
   }
   return (
     <div className="p-[20px] bg-zinc-700 shadow-lg flex flex-col sm:flex-row gap-[20px] justify-between w-[100%]">
@@ -40,17 +46,19 @@ const TodoCard = ({
         <button className="text-white" onClick={editTask}>
           <CiEdit size={30} />
         </button>
-        <button className="text-red-500" onClick={() => deleteTask(item?.id)}>
+        <button className="text-red-500" onClick={DeleteTask}>
           <RiDeleteBin7Line size={30} />
         </button>
-        <button className="text-green-500" onClick={() => markAsRead(item?.id)}>
+        <button className="text-green-500 relative">
           <IoCheckmarkDoneSharp
             size={30}
             className={completedTasks.includes(item?.id) ? "block" : "hidden"}
-          />
+            onClick={() => markAsUnRead(item?.id)}
+            />
           <IoCheckmarkSharp
             size={30}
             className={completedTasks.includes(item?.id) ? "hidden" : "block"}
+            onClick={() => markAsRead(item?.id)}
           />
         </button>
       </div>

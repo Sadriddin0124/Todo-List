@@ -51,15 +51,12 @@ const TodoModal: React.FC<TodoModalProps> = ({ open, toggle, todoList, defaultVa
             date: date ? date : defaultValue?.date
         }
         result.splice(index, 1, payload)
-        console.log(result);
-        console.log(payload, "edit");
     } 
     const arrayString = JSON.stringify(result);
     localStorage.setItem("todoList", arrayString);
     window.location.reload()
 };
   const [currentTime, setCurrentTime] = useState(new Date());
-  //   const defaultDate = "2022-04-28";
   const parts = currentTime.toLocaleDateString().split("/");
   const formattedDefaultDate = `${parts[2]}-${
     parts[0] < "10" ? parts[0] : "0" + parts[0]
@@ -83,7 +80,7 @@ const TodoModal: React.FC<TodoModalProps> = ({ open, toggle, todoList, defaultVa
                 variant="h5"
                 component="h2"
               >
-                Add new task
+                {defaultValue?.id ? "Edit task" : "Add new task"}
               </Typography>
               <TextField
                 id="outlined-basic"
@@ -109,9 +106,9 @@ const TodoModal: React.FC<TodoModalProps> = ({ open, toggle, todoList, defaultVa
               />
               <button
                 onClick={SaveTask}
-                className="px-[16px] py-[8px] text-[20px] bg-green-500 text-white"
+                className="px-[16px] py-[8px] text-[20px] bg-green-500 text-white self-end"
               >
-                Add new task
+                Save
               </button>
             </div>
           </Box>
