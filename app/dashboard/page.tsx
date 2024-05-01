@@ -84,7 +84,7 @@ const Dashboard = () => {
   };
   return (
     <div className=" bg-zinc-900 w-[100%] min-h-[100vh] flex flex-col items-center pt-[40px] sm:p-[40px] gap-[20px]">
-      <h1 className="text-[40px] font-[600] text-white">Todo List</h1>
+      <h1 className="text-[40px] font-[600] text-white">To do</h1>
       <TodoModal
         open={todoModal}
         toggle={toggle}
@@ -102,7 +102,7 @@ const Dashboard = () => {
                 todoNav === 1 ? "bg-green-500" : "bg-zinc-700"
               } px-[16px] py-[8px] text-[20px] w-[40%] whitespace-nowrap`}
             >
-              To Do
+              To do
             </button>
             <button
               onClick={() => ActiveTodo(2)}
