@@ -42,7 +42,7 @@ const TodoModal: React.FC<TodoModalProps> = ({ open, toggle, todoList, defaultVa
             desc: defaultValue?.desc ? defaultValue?.desc : desc,
             date: defaultValue.date ? defaultValue?.date : date
         }
-        result.push(payload)     
+        result.unshift(payload)     
     }else {
         let payload = {
             id: defaultValue?.id ? defaultValue?.id : todoList[todoList.length - 1]?.id + 1,
